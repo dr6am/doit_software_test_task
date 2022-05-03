@@ -1,16 +1,23 @@
-# task_1
+# Task 1
+This tasks will look at the methods you use to
+optimise code for good in app performance.
 
-A new Flutter project.
+#### Part 1:
+In order to complete this task you will need to
+display a list of 2000 shopping items.
+- This list should be randomly generated and be 2000
+items long. (Duplicate items are okay, as long as they are random)
+- The possible items are provided in the consts.dart file that should be in the current directory.
+- Each item in the list should be capitalised
 
-## Getting Started
+#### Part 2:
+In order to complete this part of the task you will
+to add some functionality to the app.    
+Please add a way to add items to the shopping list.
+- The items added should always go to the top of the list.
+- You may use libraries but they should not be needed.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Notes:
+- Please comment your code where possible (if time allows for it)
+- Libraries are allowed to be used but are not necessary for the task at hand.
