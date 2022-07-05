@@ -35,10 +35,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
+      home: const SplashScreen(),
       routes: {
-        "home": (ctx) => SplashScreen(),
+        "home": (ctx) => const SplashScreen(),
         "/auth": (ctx) => const AuthPage(),
-        "/main": (ctx) => MyHomePage(),
+        "/main": (ctx) => const MyHomePage(),
       },
     );
   }
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter = _counter - 1;
+      _counter += 1;
     });
   }
 
@@ -74,14 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$counter',
+              '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: incrementCounter,
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
