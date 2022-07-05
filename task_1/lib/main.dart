@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:task_1/state/items_manager.dart';
+import 'package:task_1/ui/adding_page.dart';
 
 import 'consts.dart';
 
@@ -44,12 +46,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DOit Software Task 1',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
+    return ItemsManager(
+      child: MaterialApp(
+        title: 'DOit Software Task 1',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -66,16 +70,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final Iterable<String> items = genItems(length: 2000);
+    final items = ItemsManager.of(context).items;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task One"),
       ),
-      body: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) => ListTile(
-                title: Text(items.elementAt(index).capitalizedCase()),
-              )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              fullscreenDialog: true,
+              builder: (BuildContext context) => AddingPage()));
+        },
+        child: const Icon(Icons.add),
+      ),
+      body: ValueListenableBuilder<Iterable<String>>(
+          valueListenable: items,
+          builder: (BuildContext context, Iterable<String> data, _) {
+            return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) => ListTile(
+                      title: Text(data.elementAt(index).capitalizedCase()),
+                    ));
+          }),
     );
   }
 }
