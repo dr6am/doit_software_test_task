@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import 'consts.dart';
 
 /// +--------------------------------------------------------+
 /// | TASK DETAILS:                                          |
@@ -62,12 +66,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final Iterable<String> items = genItems(length: 2000);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task One"),
       ),
-      // TODO: Add your code here
-      body: Container(),
+      body: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) => ListTile(
+                title: Text(items.elementAt(index).capitalizedCase()),
+              )),
     );
   }
+}
+
+Iterable<String> genItems({required int length}) sync* {
+  var rand = Random();
+  for (int index = 0; index <= length; index++) {
+    String item = List.generate(
+        2, (_) => wordList.elementAt(rand.nextInt(wordList.length))).join(' ');
+    yield item;
+  }
+}
+
+extension CapitalizedCase on String {
+  String capitalizedCase() =>
+      [this[0].toUpperCase(), substring(1).toLowerCase()].join();
 }
